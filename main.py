@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from hashlib import new
 import json
 from turtle import st
 from unittest import result
@@ -73,19 +74,30 @@ def signup(user:UserRegister = Body(...)):
         -last_name:str
         -birth_date: date
     """
-    with open('users.json','r+',encoding="utf-8") as f:
-        results = json.loads(f.read())
-        user_dict = user.dict()
-        user_dict["user_id"] = str(user_dict["user_id"])
-        user_dict["birth_date"] =str(user_dict["birth_date"])
-        results.append(user_dict)
-        f.seek(0)
-        f.write(json.dumps(results))
-        
+    file_work('users.json','r+',user)
     #with open('filepath','r+') as f: result = json.load(f)
     #modifica el archivo
     #json.dump(result,f)
-        return user
+    #with open(file_name,mod,encoding="utf-8")as f:
+        #results = json.loads(f.read())
+        #user_dict = user.dict()
+        #user_dict["user_id"] = str(user_dict["user_id"])
+        #user_dict["birth_date"] =str(user_dict["birth_date"])
+        #results.append(user_dict)
+        #f.seek(0)
+        #f.write(json.dumps(results))    
+    return user
+    
+
+def file_work(file_name:str,mod:str,objeto):
+    with open(file_name,mod,encoding="utf-8")as f:
+        results = json.loads(f.read())
+        new_dict= objeto.dict()
+        results.append(new_dict)
+        f.seek(0)
+        json.dump(results,f,default=str,indent=4)
+    
+    
 ### login user
 @app.post(path="/login",response_model=User,
           status_code=status.HTTP_200_OK,
@@ -145,8 +157,12 @@ def home():
 
 ###post a tweet
 @app.post(path="/",response_model=Tweet,status_code=status.HTTP_201_CREATED, summary="Post a Tweet",tags=["Tweests"])
-def post_tweet():
-    return{}
+def post_tweet(tweet: Tweet = Body(...)):
+    file_work('tweets.json','r+',tweet)
+    ###Con esta linea podriamos parsear a str el UUID de user que esta enlasado a nuestro modelo de tweet
+    #tweet_dict["by"]["user_id"] = str(tweet_dict["by"]["user_id"])
+    #tweet_dict["by"]["birth_date"] = str(tweet_dict["by"]["birth_date"])
+    return tweet
 
 ###show a tweet
 @app.get(path="/tweets/{tweet_id}",response_model=Tweet,status_code=status.HTTP_200_OK, summary="Show a Tweet",tags=["Tweests"])

@@ -1,1 +1,50 @@
-[{"user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "email": "luca.cmanea@gmail.com", "password": "123456789diosdelnuevotestamento", "first_name": "luca Cristian", "last_name": "Manea", "birth_date": "1993-11-17"}, {"user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "email": "magiiee@gmail.com", "password": "c6m6ekwe", "first_name": "Jesica Magali", "last_name": "Acevedo", "birth_date": "1992-11-18"}]
+[
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "luca.cmanea@gmail.com",
+        "password": "123456789diosdelnuevotestamento",
+        "first_name": "luca Cristian",
+        "last_name": "Manea",
+        "birth_date": "1993-11-17"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "magiiee@gmail.com",
+        "password": "c6m6ekwe",
+        "first_name": "Jesica Magali",
+        "last_name": "Acevedo",
+        "birth_date": "1992-11-18"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "user@example.com",
+        "password": "stringst",
+        "first_name": "Luca",
+        "last_name": "Manea",
+        "birth_date": "2022-05-07"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "user@example.com",
+        "password": "stringst",
+        "first_name": "Christian",
+        "last_name": "Manea",
+        "birth_date": "2020-07-07"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "user@example.com",
+        "password": "stringst",
+        "first_name": "Christian",
+        "last_name": "Manea",
+        "birth_date": "2020-07-07"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "user@example.com",
+        "password": "stringst",
+        "first_name": "Christian",
+        "last_name": "Manea",
+        "birth_date": "2020-07-07"
+    }
+]
