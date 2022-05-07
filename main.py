@@ -100,7 +100,17 @@ def login():
           summary="Show all users",
           tags=["Users"])
 def show_all_users():
-    pass
+    """This path operation show all users in the app
+    Parameters:
+        user_id: UUID
+        email: Emailstr
+        first_name: str
+        last_name: str
+        birth_date: date
+    """
+    with open("users.json","r",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        return results
 
 ###show a user
 @app.post(path="/users/{user_id}",response_model=User,
