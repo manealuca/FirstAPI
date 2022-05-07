@@ -1,5 +1,7 @@
 from datetime import date, datetime
+import json
 from turtle import st
+from unittest import result
 from uuid import UUID
 from typing import Optional, List
 
@@ -9,7 +11,7 @@ import pydantic
 from pydantic import BaseModel, EmailStr,Field
 
 #FasApi
-from fastapi import FastAPI, status
+from fastapi import Body, FastAPI, status
 
 
 class UserBase(BaseModel):
@@ -32,6 +34,11 @@ class User(UserBase):
 
 
 
+class UserRegister(User,UserLogin):
+    pass
+
+
+
 
 class Tweet(BaseModel):
     tweet_id: UUID = Field(...)
@@ -50,9 +57,35 @@ app = FastAPI()
           status_code=status.HTTP_201_CREATED,
           summary="Register a user",
           tags=["Users"])
-def signup():
-    pass
+def signup(user:UserRegister = Body(...)):
+    """
+    Title: SignUp
+    This path operation register a user in the app
 
+    Parameters:
+        -Request Body Parameter
+            -user: UserRegister
+            
+    Returns a JSON with the basic user information:
+        -user_id: UUID
+        -email: Emailstr
+        -first_name: str
+        -last_name:str
+        -birth_date: date
+    """
+    with open('users.json','r+',encoding="utf-8") as f:
+        results = json.loads(f.read())
+        user_dict = user.dict()
+        user_dict["user_id"] = str(user_dict["user_id"])
+        user_dict["birth_date"] =str(user_dict["birth_date"])
+        results.append(user_dict)
+        f.seek(0)
+        f.write(json.dumps(results))
+        
+    #with open('filepath','r+') as f: result = json.load(f)
+    #modifica el archivo
+    #json.dump(result,f)
+        return user
 ### login user
 @app.post(path="/login",response_model=User,
           status_code=status.HTTP_200_OK,
